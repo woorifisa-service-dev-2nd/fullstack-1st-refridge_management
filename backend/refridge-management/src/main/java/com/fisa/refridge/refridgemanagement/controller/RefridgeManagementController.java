@@ -28,18 +28,18 @@ public class RefridgeManagementController {
 
     private final GroceryService groceryService;
 
-    @GetMapping("/name/{itemName}")
-    public ResponseEntity<List<GroceryResponse>> findGroceriesByName(@PathVariable String itemName) {
-        List<GroceryResponse> groceries = groceryService.findByItemName(itemName)
+    @GetMapping(params = "item")
+    public ResponseEntity<List<GroceryResponse>> findGroceriesByName(@RequestParam String item) {
+        List<GroceryResponse> groceries = groceryService.findByItemName(item)
                 .stream()
                 .map(GroceryResponse::new)
                 .collect(Collectors.toList());
         return ResponseEntity.ok().body(groceries);
     }
 
-    @GetMapping("/category/{categoryId}")
-    public ResponseEntity<List<GroceryResponse>> findGroceriesByCategory(@PathVariable Long categoryId) {
-        List<GroceryResponse> groceries = groceryService.findByCategoryId(categoryId)
+    @GetMapping(params = "category")
+    public ResponseEntity<List<GroceryResponse>> findGroceriesByCategory(@RequestParam Long category) {
+        List<GroceryResponse> groceries = groceryService.findByCategoryId(category)
                 .stream()
                 .map(GroceryResponse::new)
                 .collect(Collectors.toList());
