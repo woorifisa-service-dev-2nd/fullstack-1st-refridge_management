@@ -18,14 +18,12 @@ public class PurchaseHistory {
     @Column(name = "item_id", nullable = false)
     private Long itemId;
 
-//    @Column(name = "category_id", nullable = false)
-//    private Long categoryId;
+
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
 
-//    @Column(name = "unit_id", nullable = false)
-//    private Long unitId;
+
     @ManyToOne
     @JoinColumn(name = "unit_id")
     private Unit unit;

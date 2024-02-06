@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+
 /*
 * 각자 메서드 구현
 * 필요한 DTO 클래스 작성
@@ -20,21 +24,37 @@ import org.springframework.web.bind.annotation.RestController;
 * 삭제: DELETE
 *
 * */
-@RequestMapping("/api/groceries")
-@RestController
+
 @RequiredArgsConstructor
+@RestController
+@RequestMapping("/api/groceries")
 public class RefridgeManagementController {
 
-    private final RefridgeManagementService refridgeManagementService;
+    private final RefridgeManagementService groceryService;
 
-    @PostMapping
+    @GetMapping(params = "item")
+    public ResponseEntity<List<PurchaseHistoryResponse>> findGroceriesByName(@RequestParam String item) {
+        List<PurchaseHistoryResponse> groceries = groceryService.findByItemName(item)
+                .stream()
+                .map(PurchaseHistoryResponse::new)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok().body(groceries);
+    }
+
+    @GetMapping(params = "category")
+    public ResponseEntity<List<PurchaseHistoryResponse>> findGroceriesByCategory(@RequestParam String category) {
+        List<PurchaseHistoryResponse> groceries = groceryService.findByCategory(category)
+                .stream()
+                .map(PurchaseHistoryResponse::new)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok().body(groceries);
+    }
+     @PostMapping
     public ResponseEntity<PurchaseHistory> addPurchaseHistory (@RequestBody PurchaseHistory purchaseHistory) {
-        System.out.println("purchaseHistory = " + purchaseHistory);
 
         refridgeManagementService.save(purchaseHistory);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(purchaseHistory);
     }
-
 
 }
