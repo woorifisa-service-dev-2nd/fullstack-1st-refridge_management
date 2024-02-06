@@ -10,7 +10,7 @@ public class PurchaseHistoryResponse {
 
     private String itemName;
 
-    private int quantity;
+    private Long quantity;
 
     private LocalDate expirationDate;
 

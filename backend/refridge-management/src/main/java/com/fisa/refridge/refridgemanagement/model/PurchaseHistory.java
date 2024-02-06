@@ -23,7 +23,6 @@ public class PurchaseHistory {
     @JoinColumn(name = "category_id")
     private Category category;
 
-
     @ManyToOne
     @JoinColumn(name = "unit_id")
     private Unit unit;

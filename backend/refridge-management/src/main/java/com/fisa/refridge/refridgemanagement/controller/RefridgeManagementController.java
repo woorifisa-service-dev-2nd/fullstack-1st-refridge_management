@@ -1,14 +1,12 @@
 package com.fisa.refridge.refridgemanagement.controller;
 
+import com.fisa.refridge.refridgemanagement.dto.PurchaseHistoryResponse;
 import com.fisa.refridge.refridgemanagement.model.PurchaseHistory;
 import com.fisa.refridge.refridgemanagement.service.RefridgeManagementService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,11 +28,11 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/groceries")
 public class RefridgeManagementController {
 
-    private final RefridgeManagementService groceryService;
+    private final RefridgeManagementService refridgeManagementService;
 
     @GetMapping(params = "item")
     public ResponseEntity<List<PurchaseHistoryResponse>> findGroceriesByName(@RequestParam String item) {
-        List<PurchaseHistoryResponse> groceries = groceryService.findByItemName(item)
+        List<PurchaseHistoryResponse> groceries = refridgeManagementService.findByItemName(item)
                 .stream()
                 .map(PurchaseHistoryResponse::new)
                 .collect(Collectors.toList());
@@ -43,7 +41,7 @@ public class RefridgeManagementController {
 
     @GetMapping(params = "category")
     public ResponseEntity<List<PurchaseHistoryResponse>> findGroceriesByCategory(@RequestParam String category) {
-        List<PurchaseHistoryResponse> groceries = groceryService.findByCategory(category)
+        List<PurchaseHistoryResponse> groceries = refridgeManagementService.findByCategory(category)
                 .stream()
                 .map(PurchaseHistoryResponse::new)
                 .collect(Collectors.toList());
@@ -52,7 +50,7 @@ public class RefridgeManagementController {
      @PostMapping
     public ResponseEntity<PurchaseHistory> addPurchaseHistory (@RequestBody PurchaseHistory purchaseHistory) {
 
-        refridgeManagementService.save(purchaseHistory);
+         refridgeManagementService.save(purchaseHistory);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(purchaseHistory);
     }
