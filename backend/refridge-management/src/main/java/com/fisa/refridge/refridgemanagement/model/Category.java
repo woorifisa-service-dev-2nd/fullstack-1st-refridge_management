@@ -1,6 +1,7 @@
 package com.fisa.refridge.refridgemanagement.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -19,9 +20,15 @@ public class Category {
     @Column(name = "category_id", nullable = false)
     private Long categoryId;
 
-    @Column(name = "category", nullable = false)
+    @Column(name = "category")
     private String category;
 
     @OneToMany(mappedBy = "category")
     private List<PurchaseHistory> purchaseHistories = new ArrayList<>();
+
+    @Builder
+    public Category(Long categoryId) {
+        this.categoryId = categoryId;
+    }
+
 }

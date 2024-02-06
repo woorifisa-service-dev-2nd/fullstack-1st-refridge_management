@@ -10,4 +10,5 @@ public interface RefridgeManagementRepository extends CrudRepository<PurchaseHis
     List<PurchaseHistory> findAllByItemNameContainsOrderByExpirationDateAsc(String itemName);
 
     List<PurchaseHistory> findAllByCategory_CategoryOrderByExpirationDateAsc(String category);
+
 }

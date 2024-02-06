@@ -1,8 +1,6 @@
 package com.fisa.refridge.refridgemanagement.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -11,6 +9,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
 @Entity
 @Table(name = "purchase_history")
 public class PurchaseHistory {
@@ -19,9 +18,11 @@ public class PurchaseHistory {
     @Column(name = "item_id", nullable = false)
     private Long itemId;
 
+
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+
 
     @ManyToOne
     @JoinColumn(name = "unit_id")
@@ -31,11 +32,21 @@ public class PurchaseHistory {
     private String itemName;
 
     @Column(name = "quantity", nullable = false)
-    private int quantity;
+    private Long quantity;
 
     @Column(name = "expiration_date", nullable = false)
     private LocalDate expirationDate;
 
     @Column(name = "purchase_date", nullable = false)
     private LocalDate purchaseDate;
+
+    @Builder
+    public PurchaseHistory(Category category, Unit unit, String itemName, Long quantity, LocalDate expirationDate, LocalDate purchaseDate) {
+        this.category = category;
+        this.unit = unit;
+        this.itemName = itemName;
+        this.quantity = quantity;
+        this.expirationDate = expirationDate;
+        this.purchaseDate = purchaseDate;
+    }
 }

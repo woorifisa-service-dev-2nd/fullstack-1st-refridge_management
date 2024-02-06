@@ -1,13 +1,18 @@
 package com.fisa.refridge.refridgemanagement.controller;
 
-import com.fisa.refridge.refridgemanagement.dto.PurchaseHistoryResponse;
+import com.fisa.refridge.refridgemanagement.model.PurchaseHistory;
 import com.fisa.refridge.refridgemanagement.service.RefridgeManagementService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 
 /*
 * 각자 메서드 구현
@@ -19,6 +24,7 @@ import java.util.stream.Collectors;
 * 삭제: DELETE
 *
 * */
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/groceries")
@@ -43,4 +49,12 @@ public class RefridgeManagementController {
                 .collect(Collectors.toList());
         return ResponseEntity.ok().body(groceries);
     }
+     @PostMapping
+    public ResponseEntity<PurchaseHistory> addPurchaseHistory (@RequestBody PurchaseHistory purchaseHistory) {
+
+        refridgeManagementService.save(purchaseHistory);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(purchaseHistory);
+    }
+
 }
