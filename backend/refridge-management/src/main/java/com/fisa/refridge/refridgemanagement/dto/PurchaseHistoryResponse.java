@@ -7,6 +7,7 @@ import java.time.LocalDate;
 
 @Getter
 public class PurchaseHistoryResponse {
+    private Long itemId;
 
     private String itemName;
 
@@ -19,8 +20,10 @@ public class PurchaseHistoryResponse {
     private LocalDate expirationDate;
 
     private LocalDate purchaseDate;
+    
 
     public PurchaseHistoryResponse(PurchaseHistory purchaseHistory) {
+        this.itemId = purchaseHistory.getItemId();
         this.itemName = purchaseHistory.getItemName();
         this.quantity = purchaseHistory.getQuantity();
         this.unit = purchaseHistory.getUnit().getUnit();
