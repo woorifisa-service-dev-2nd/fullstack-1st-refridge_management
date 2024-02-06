@@ -3,7 +3,8 @@ package com.fisa.refridge.refridgemanagement.controller;
 import com.fisa.refridge.refridgemanagement.model.PurchaseHistory;
 import com.fisa.refridge.refridgemanagement.service.RefridgeManagementService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,11 +28,12 @@ public class RefridgeManagementController {
     private final RefridgeManagementService refridgeManagementService;
 
     @PostMapping
-    public PurchaseHistory addPurchaseHistory (@RequestBody PurchaseHistory purchaseHistory) {
+    public ResponseEntity<PurchaseHistory> addPurchaseHistory (@RequestBody PurchaseHistory purchaseHistory) {
         System.out.println("purchaseHistory = " + purchaseHistory);
 
         refridgeManagementService.save(purchaseHistory);
-        return purchaseHistory;
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(purchaseHistory);
     }
 
 

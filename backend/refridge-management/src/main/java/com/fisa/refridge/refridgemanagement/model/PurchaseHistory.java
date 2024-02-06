@@ -18,11 +18,17 @@ public class PurchaseHistory {
     @Column(name = "item_id", nullable = false)
     private Long itemId;
 
-    @Column(name = "category_id", nullable = false)
-    private Long categoryId;
+//    @Column(name = "category_id", nullable = false)
+//    private Long categoryId;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
-    @Column(name = "unit_id", nullable = false)
-    private Long unitId;
+//    @Column(name = "unit_id", nullable = false)
+//    private Long unitId;
+    @ManyToOne
+    @JoinColumn(name = "unit_id")
+    private Unit unit;
 
     @Column(name = "item_name", nullable = false)
     private String itemName;
@@ -30,16 +36,16 @@ public class PurchaseHistory {
     @Column(name = "quantity", nullable = false)
     private Long quantity;
 
-    @Column(name = "expiration_date")
+    @Column(name = "expiration_date", nullable = false)
     private LocalDate expirationDate;
 
     @Column(name = "purchase_date", nullable = false)
     private LocalDate purchaseDate;
 
     @Builder
-    public PurchaseHistory(Long categoryId, Long unitId, String itemName, Long quantity, LocalDate expirationDate, LocalDate purchaseDate) {
-        this.categoryId = categoryId;
-        this.unitId = unitId;
+    public PurchaseHistory(Category category, Unit unit, String itemName, Long quantity, LocalDate expirationDate, LocalDate purchaseDate) {
+        this.category = category;
+        this.unit = unit;
         this.itemName = itemName;
         this.quantity = quantity;
         this.expirationDate = expirationDate;
