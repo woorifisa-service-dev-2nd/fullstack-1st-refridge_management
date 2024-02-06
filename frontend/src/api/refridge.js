@@ -47,7 +47,18 @@ export const getPurchaseSortingShortExpiration = ({ itemName }) => {
 };
 
 // 재료 사용량 입력하면 남은 수량 수정 후 (자동)조회
-export const useRefridge = ({ id, quantity }) => {};
+export const useRefridge = ({ id, quantity }) => {
+  return fetch(`/api/${id}`, { 
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      "usedQuantity" : quantity
+    }),
+  }).then((res) => res.json());
+};
+
 
 // 재료 삭제
 export const deleteRefridge = ({ id }) => {
