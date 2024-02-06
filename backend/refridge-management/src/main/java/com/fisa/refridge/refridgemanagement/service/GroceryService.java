@@ -18,6 +18,6 @@ public class GroceryService {
     }
 
     public List<PurchaseHistory> findByCategoryId(Long categoryId) {
-        return purchaseHistoryRepository.findAllByCategoryIdOrderByExpirationDateAsc(categoryId);
+        return purchaseHistoryRepository.findAllByCategory_CategoryIdOrderByExpirationDateAsc(categoryId);
     }
 }

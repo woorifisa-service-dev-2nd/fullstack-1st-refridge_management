@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,4 +21,7 @@ public class Unit {
 
     @Column(name = "unit", nullable = false)
     private String unit;
+
+    @OneToMany(mappedBy = "unit")
+    private List<PurchaseHistory> purchaseHistories = new ArrayList<>();
 }

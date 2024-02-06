@@ -22,7 +22,6 @@ public class Category {
     @Column(name = "category", nullable = false)
     private String category;
 
-    @OneToMany
-    @JoinColumn(name = "item_id")
+    @OneToMany(mappedBy = "category")
     private List<PurchaseHistory> purchaseHistories = new ArrayList<>();
 }
