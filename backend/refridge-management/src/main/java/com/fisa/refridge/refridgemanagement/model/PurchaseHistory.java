@@ -17,13 +17,15 @@ public class PurchaseHistory {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "item_id", nullable = false)
-    private int itemId;
+    private Long itemId;
 
-    @Column(name = "category_id", nullable = false)
-    private int categoryId;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
-    @Column(name = "unit_id", nullable = false)
-    private int unitId;
+    @ManyToOne
+    @JoinColumn(name = "unit_id")
+    private Unit unit;
 
     @Column(name = "item_name", nullable = false)
     private String itemName;
