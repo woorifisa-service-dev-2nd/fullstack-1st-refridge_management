@@ -36,5 +36,11 @@ public class RefridgeManagementService {
 
       return refridgeManagementRepository.save(purchaseHistory);
     }
+
+    public void delete(Long id) {
+
+        refridgeManagementRepository.deleteById(id);
+
+    }
         
 }
