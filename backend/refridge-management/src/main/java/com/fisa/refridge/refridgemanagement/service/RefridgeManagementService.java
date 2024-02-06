@@ -52,4 +52,7 @@ public class RefridgeManagementService {
         return refridgeManagementRepository.save(ph);
     }
 
+    public Iterable<PurchaseHistory> findAll(){
+        return refridgeManagementRepository.findAll();
+    }
 }

@@ -4,6 +4,7 @@ import InputDate from "../../components/InputDate";
 import InputSelect from "../../components/InputSelect";
 import InputCustom from "@/components/InputCustom";
 import { addRefridge } from "@/api/refridge";
+import UserCard from "@/components/UserCard";
 
 export default function page() {
   const [itemName, setName] = useState();
@@ -90,6 +91,16 @@ export default function page() {
         />
       )}
       <button onClick={onCreate}>추가</button>
+      <UserCard
+        {...{
+          itemName: "test아",
+          quantity: 100,
+          unit: "g",
+          category: "snack",
+          expirationDate: "2020-02-01",
+          purchaseDate: "2020-02-10",
+        }}
+      />
     </>
   );
 }

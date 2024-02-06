@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 
-export default function InputSelect({ items, title, setSelect, placeholder }) {
+export default function InputSelect({
+  items,
+  title,
+  setSelect,
+  placeholder,
+  selectValue,
+}) {
   //   useEffect(() => {
   //     items.map((v, i) => console.log(i, v));
   //   }, []);
@@ -16,7 +22,7 @@ export default function InputSelect({ items, title, setSelect, placeholder }) {
             items.map((v, i) => {
               return (
                 <option value={i} key={i}>
-                  {v.name}
+                  {v[selectValue || "name"]}
                 </option>
               );
             })}
