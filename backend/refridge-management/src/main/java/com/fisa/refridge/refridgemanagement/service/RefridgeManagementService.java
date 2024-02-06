@@ -1,14 +1,15 @@
 package com.fisa.refridge.refridgemanagement.service;
 
+
 import com.fisa.refridge.refridgemanagement.model.Category;
 import com.fisa.refridge.refridgemanagement.model.PurchaseHistory;
 import com.fisa.refridge.refridgemanagement.model.Unit;
-
 import com.fisa.refridge.refridgemanagement.repository.RefridgeManagementRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RequiredArgsConstructor
@@ -42,5 +43,13 @@ public class RefridgeManagementService {
         refridgeManagementRepository.deleteById(id);
 
     }
-        
+    public PurchaseHistory findById(Long id) {
+
+        Optional<PurchaseHistory> purchaseHistoryOptional = refridgeManagementRepository.findById(id);
+        return purchaseHistoryOptional.orElse(null);
+    }
+    public PurchaseHistory update(PurchaseHistory ph) {
+        return refridgeManagementRepository.save(ph);
+    }
+
 }

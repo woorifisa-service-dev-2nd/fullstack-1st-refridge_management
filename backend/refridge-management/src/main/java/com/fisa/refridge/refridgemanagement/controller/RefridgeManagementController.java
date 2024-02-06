@@ -12,6 +12,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
+import java.util.Map;
+
+
 /*
 * 각자 메서드 구현
 * 필요한 DTO 클래스 작성
@@ -60,6 +63,21 @@ public class RefridgeManagementController {
 
         refridgeManagementService.delete(id);
 
+    }
+    @PatchMapping("/{id}")
+    public void updatePurchaseHistory(@PathVariable Long id, @RequestBody Map<String, String> usedQuantityMap) {
+        Long usedQuantityL = Long.parseLong(usedQuantityMap.get("usedQuantity"));
+        PurchaseHistory ph = refridgeManagementService.findById(id);
+
+//         냉장고에 있는 재료가 사용하려는 재료보다 적으면 재료가 부족하다는 메시지 출력
+        if(ph.getQuantity() < usedQuantityL) {
+            System.out.println("재료가 부족합니다. 재료를 주문하세요.");
+        } else {
+            ph.setQuantity(ph.getQuantity() - usedQuantityL);
+        }
+
+        refridgeManagementService.update(ph);
+        return;
     }
 
 }
