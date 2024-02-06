@@ -4,6 +4,7 @@ import { addRefridge } from "@/api/refridge";
 import InputCustom from "@/components/InputCustom";
 import InputSelect from "@/components/InputSelect";
 import InputDate from "@/components/InputDate";
+import UserCard from "@/components/UserCard";
 
 export default function page() {
   const [itemName, setName] = useState();
@@ -11,6 +12,7 @@ export default function page() {
   const [expirationDate, setExpirationDate] = useState();
   const [purchaseDate, setPurchaseDate] = useState();
   const [select, setSelect] = useState("");
+  const [addItem, setAddTiem] = useState();
 
   const categories = [
     {
@@ -44,10 +46,9 @@ export default function page() {
       select,
     });
 
-    // ######## 카테고리 id 수정
     const res = await addRefridge({
       category: {
-        categoryId: select,
+        categoryId: +select + 1,
       },
       unit: {
         unitId: 2,
@@ -74,12 +75,7 @@ export default function page() {
         title={"제품 종류를 선택 하세요"}
       />
       <InputCustom title={"수량"} setInputData={setQuantity} />
-      <InputDate
-        label={"구매 일자"}
-        setDate={setExpirationDate}
-        dateTime={new Date("2024-02-28")}
-        calcDate={3}
-      />
+      <InputDate label={"구매 일자"} setDate={setExpirationDate} calcDate={0} />
       {select !== "" && (
         <InputDate
           key={select}
