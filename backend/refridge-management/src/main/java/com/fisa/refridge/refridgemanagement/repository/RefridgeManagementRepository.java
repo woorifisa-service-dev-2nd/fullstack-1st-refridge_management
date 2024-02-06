@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface PurchaseHistoryRepository extends CrudRepository<PurchaseHistory, Long> {
+public interface RefridgeManagementRepository extends CrudRepository<PurchaseHistory, Long> {
 
     List<PurchaseHistory> findAllByItemNameContainsOrderByExpirationDateAsc(String itemName);
 

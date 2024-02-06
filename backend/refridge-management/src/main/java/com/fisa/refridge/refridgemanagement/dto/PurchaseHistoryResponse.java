@@ -6,7 +6,7 @@ import lombok.Getter;
 import java.time.LocalDate;
 
 @Getter
-public class GroceryResponse {
+public class PurchaseHistoryResponse {
 
     private String itemName;
 
@@ -16,7 +16,7 @@ public class GroceryResponse {
 
     private LocalDate purchaseDate;
 
-    public GroceryResponse(PurchaseHistory purchaseHistory) {
+    public PurchaseHistoryResponse(PurchaseHistory purchaseHistory) {
         this.itemName = purchaseHistory.getItemName();
         this.quantity = purchaseHistory.getQuantity();
         this.expirationDate = purchaseHistory.getExpirationDate();

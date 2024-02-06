@@ -1,11 +1,9 @@
 package com.fisa.refridge.refridgemanagement.controller;
 
-import com.fisa.refridge.refridgemanagement.dto.GroceryResponse;
-import com.fisa.refridge.refridgemanagement.model.PurchaseHistory;
-import com.fisa.refridge.refridgemanagement.service.GroceryService;
+import com.fisa.refridge.refridgemanagement.dto.PurchaseHistoryResponse;
+import com.fisa.refridge.refridgemanagement.service.RefridgeManagementService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,22 +24,22 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/groceries")
 public class RefridgeManagementController {
 
-    private final GroceryService groceryService;
+    private final RefridgeManagementService groceryService;
 
     @GetMapping(params = "item")
-    public ResponseEntity<List<GroceryResponse>> findGroceriesByName(@RequestParam String item) {
-        List<GroceryResponse> groceries = groceryService.findByItemName(item)
+    public ResponseEntity<List<PurchaseHistoryResponse>> findGroceriesByName(@RequestParam String item) {
+        List<PurchaseHistoryResponse> groceries = groceryService.findByItemName(item)
                 .stream()
-                .map(GroceryResponse::new)
+                .map(PurchaseHistoryResponse::new)
                 .collect(Collectors.toList());
         return ResponseEntity.ok().body(groceries);
     }
 
     @GetMapping(params = "category")
-    public ResponseEntity<List<GroceryResponse>> findGroceriesByCategory(@RequestParam String category) {
-        List<GroceryResponse> groceries = groceryService.findByCategory(category)
+    public ResponseEntity<List<PurchaseHistoryResponse>> findGroceriesByCategory(@RequestParam String category) {
+        List<PurchaseHistoryResponse> groceries = groceryService.findByCategory(category)
                 .stream()
-                .map(GroceryResponse::new)
+                .map(PurchaseHistoryResponse::new)
                 .collect(Collectors.toList());
         return ResponseEntity.ok().body(groceries);
     }

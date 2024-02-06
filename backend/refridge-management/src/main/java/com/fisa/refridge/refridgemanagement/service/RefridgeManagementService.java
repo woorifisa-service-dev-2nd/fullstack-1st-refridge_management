@@ -1,7 +1,7 @@
 package com.fisa.refridge.refridgemanagement.service;
 
 import com.fisa.refridge.refridgemanagement.model.PurchaseHistory;
-import com.fisa.refridge.refridgemanagement.repository.PurchaseHistoryRepository;
+import com.fisa.refridge.refridgemanagement.repository.RefridgeManagementRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,9 +9,9 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class GroceryService {
+public class RefridgeManagementService {
 
-    private final PurchaseHistoryRepository purchaseHistoryRepository;
+    private final RefridgeManagementRepository purchaseHistoryRepository;
 
     public List<PurchaseHistory> findByItemName(String itemName) {
         return purchaseHistoryRepository.findAllByItemNameContainsOrderByExpirationDateAsc(itemName);
