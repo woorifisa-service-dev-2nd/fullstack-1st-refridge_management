@@ -59,9 +59,14 @@ public class RefridgeManagementController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Long id){
+    public ResponseEntity<Boolean> delete(@PathVariable("id") Long id){
 
-        refridgeManagementService.delete(id);
+        try{
+            refridgeManagementService.delete(id);
+            return new ResponseEntity<>(true,HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(false,HttpStatus.NOT_FOUND);
+        }
 
     }
     @PatchMapping("/{id}")

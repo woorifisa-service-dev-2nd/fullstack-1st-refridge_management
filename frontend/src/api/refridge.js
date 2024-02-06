@@ -9,7 +9,6 @@ export const addRefridge = ({
 }) => {
   return fetch(`/api`, {
     method: "POST",
-    mode: "same-origin", // no-cors, cors, *same-origin
     headers: {
       "Content-Type": "application/json",
     },
@@ -54,5 +53,5 @@ export const useRefridge = ({ id, quantity }) => {};
 export const deleteRefridge = ({ id }) => {
   return fetch(`/api/${id}`, {
     method: "delete",
-  }).then((res) => res.json());
+  }).then((res) => res.text());
 };
