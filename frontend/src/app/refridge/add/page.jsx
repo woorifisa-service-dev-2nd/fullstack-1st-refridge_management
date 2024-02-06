@@ -32,6 +32,7 @@ export default function page() {
       expiration: 0,
     },
     {
+      id:4,
       name: "dairy_product",
       expiration: 0,
     },

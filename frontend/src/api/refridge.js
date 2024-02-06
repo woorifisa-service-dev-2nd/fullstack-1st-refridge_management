@@ -61,3 +61,9 @@ export const findAllItems = () => {
     method: "GET",
   }).then((res) => res.json());
 };
+
+export const getCategories = () => {
+  return fetch("/api/categories", {
+    method: "GET",
+  }).then((res) => res.json());
+}
