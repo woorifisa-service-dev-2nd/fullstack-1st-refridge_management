@@ -17,7 +17,7 @@ public class GroceryService {
         return purchaseHistoryRepository.findAllByItemNameContainsOrderByExpirationDateAsc(itemName);
     }
 
-    public List<PurchaseHistory> findByCategoryId(Long categoryId) {
-        return purchaseHistoryRepository.findAllByCategory_CategoryIdOrderByExpirationDateAsc(categoryId);
+    public List<PurchaseHistory> findByCategory(String category) {
+        return purchaseHistoryRepository.findAllByCategory_CategoryOrderByExpirationDateAsc(category);
     }
 }

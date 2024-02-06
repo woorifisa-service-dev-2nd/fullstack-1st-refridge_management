@@ -38,8 +38,8 @@ public class RefridgeManagementController {
     }
 
     @GetMapping(params = "category")
-    public ResponseEntity<List<GroceryResponse>> findGroceriesByCategory(@RequestParam Long category) {
-        List<GroceryResponse> groceries = groceryService.findByCategoryId(category)
+    public ResponseEntity<List<GroceryResponse>> findGroceriesByCategory(@RequestParam String category) {
+        List<GroceryResponse> groceries = groceryService.findByCategory(category)
                 .stream()
                 .map(GroceryResponse::new)
                 .collect(Collectors.toList());

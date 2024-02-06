@@ -9,5 +9,5 @@ public interface PurchaseHistoryRepository extends CrudRepository<PurchaseHistor
 
     List<PurchaseHistory> findAllByItemNameContainsOrderByExpirationDateAsc(String itemName);
 
-    List<PurchaseHistory> findAllByCategory_CategoryIdOrderByExpirationDateAsc(Long categoryId);
+    List<PurchaseHistory> findAllByCategory_CategoryOrderByExpirationDateAsc(String category);
 }
