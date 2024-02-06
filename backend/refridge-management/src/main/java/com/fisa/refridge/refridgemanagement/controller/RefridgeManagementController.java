@@ -1,6 +1,8 @@
 package com.fisa.refridge.refridgemanagement.controller;
 
+import com.fisa.refridge.refridgemanagement.dto.CategoryResponse;
 import com.fisa.refridge.refridgemanagement.dto.PurchaseHistoryResponse;
+import com.fisa.refridge.refridgemanagement.model.Category;
 import com.fisa.refridge.refridgemanagement.model.PurchaseHistory;
 import com.fisa.refridge.refridgemanagement.service.RefridgeManagementService;
 import lombok.RequiredArgsConstructor;
@@ -33,6 +35,15 @@ import java.util.Map;
 public class RefridgeManagementController {
 
     private final RefridgeManagementService refridgeManagementService;
+
+    @GetMapping("/categories")
+    public ResponseEntity<List<CategoryResponse>> findCategory() {
+        List<CategoryResponse> categories = refridgeManagementService.findCategories()
+                .stream()
+                .map(CategoryResponse::new)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok().body(categories);
+    }
 
     @GetMapping(params = "item")
     public ResponseEntity<List<PurchaseHistoryResponse>> findGroceriesByName(@RequestParam String item) {
