@@ -55,4 +55,11 @@ public class RefridgeManagementController {
                 .body(purchaseHistory);
     }
 
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") Long id){
+
+        refridgeManagementService.delete(id);
+
+    }
+
 }
