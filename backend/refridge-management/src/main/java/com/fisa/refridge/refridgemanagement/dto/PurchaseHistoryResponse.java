@@ -12,6 +12,10 @@ public class PurchaseHistoryResponse {
 
     private Long quantity;
 
+    private String unit;
+
+    private String category;
+
     private LocalDate expirationDate;
 
     private LocalDate purchaseDate;
@@ -19,6 +23,8 @@ public class PurchaseHistoryResponse {
     public PurchaseHistoryResponse(PurchaseHistory purchaseHistory) {
         this.itemName = purchaseHistory.getItemName();
         this.quantity = purchaseHistory.getQuantity();
+        this.unit = purchaseHistory.getUnit().getUnit();
+        this.category = purchaseHistory.getCategory().getCategory();
         this.expirationDate = purchaseHistory.getExpirationDate();
         this.purchaseDate = purchaseHistory.getPurchaseDate();
     }
