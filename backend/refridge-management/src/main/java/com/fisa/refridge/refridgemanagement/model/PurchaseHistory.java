@@ -18,7 +18,6 @@ public class PurchaseHistory {
     @Column(name = "item_id", nullable = false)
     private Long itemId;
 
-
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
@@ -38,7 +37,6 @@ public class PurchaseHistory {
 
     @Column(name = "purchase_date", nullable = false)
     private LocalDate purchaseDate;
-
     @Builder
     public PurchaseHistory(Category category, Unit unit, String itemName, Long quantity, LocalDate expirationDate, LocalDate purchaseDate) {
         this.category = category;
@@ -48,4 +46,5 @@ public class PurchaseHistory {
         this.expirationDate = expirationDate;
         this.purchaseDate = purchaseDate;
     }
+
 }
