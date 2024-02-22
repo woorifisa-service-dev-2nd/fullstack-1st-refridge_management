@@ -1,5 +1,5 @@
 "use client";
-import { findAllItems } from "@/api/refridge";
+import { getAllItems } from "@/api/refridge";
 import InputSelect from "@/components/InputSelect";
 import UserCard from "@/components/UserCard";
 import React, { useEffect, useState } from "react";
@@ -8,7 +8,7 @@ export default function page() {
   const [items, setItems] = useState([]);
   const [select, setSelect] = useState(0);
   useEffect(() => {
-    findAllItems().then((res) => setItems(res));
+    getAllItems().then((res) => setItems(res));
   }, []);
 
   const onUpdate = () => {

@@ -28,13 +28,5 @@ export default function page({ children }) {
     },
   ];
 
-  return (
-    <>
-      <InputSelect
-        items={categories}
-        setSelect={setPurchaseDate}
-        title={"제품 종류를 선택 하세요"}
-      />
-    </>
-  );
+  return <></>;
 }

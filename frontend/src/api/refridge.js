@@ -56,7 +56,7 @@ export const deleteRefridge = ({ id }) => {
   }).then((res) => res.text());
 };
 
-export const findAllItems = () => {
+export const getAllItems = () => {
   return fetch("/api/items", {
     method: "GET",
   }).then((res) => res.json());
