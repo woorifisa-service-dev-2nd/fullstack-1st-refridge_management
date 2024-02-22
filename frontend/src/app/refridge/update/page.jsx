@@ -1,12 +1,11 @@
 "use client";
 
-import { findAllItems, useRefridge } from "@/api/refridge";
+import { getAllItems, useRefridge } from "@/api/refridge";
 import InputCustom from "@/components/InputCustom";
 
 import InputSelect from "@/components/InputSelect";
 import UserCard from "@/components/UserCard";
 import React, { useEffect, useRef, useState } from "react";
-
 
 export default function page() {
   const [items, setItems] = useState([]);
@@ -14,17 +13,15 @@ export default function page() {
   const [quantity, setQuantity] = useState(0);
   const inputRef = useRef();
   useEffect(() => {
-
     // inputRef.current.focus();
-    findAllItems().then((res) => setItems(res));
-
+    getAllItems().then((res) => setItems(res));
   }, []);
 
   const onUpdate = () => {
     useRefridge({
-      id : items[+select].itemId,
-      quantity
-    })
+      id: items[+select].itemId,
+      quantity,
+    });
     console.log(items[+select].itemId, quantity);
   };
   return (
@@ -47,7 +44,10 @@ export default function page() {
           type="text"
           ref={inputRef}
         /> */}
-        <InputCustom  setInputData={setQuantity} title={"사용할 양을 적으세요"}/>
+        <InputCustom
+          setInputData={setQuantity}
+          title={"사용할 양을 적으세요"}
+        />
 
         <button onClick={onUpdate}>수정</button>
       </div>

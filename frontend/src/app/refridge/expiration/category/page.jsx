@@ -16,7 +16,7 @@ export default function page() {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    getCategories().then(res => setCategories(res));
+    getCategories().then((res) => setCategories(res));
   }, []);
 
   const onCreate = async () => {
@@ -49,9 +49,9 @@ export default function page() {
       />
       <button onClick={onCreate}>검색</button>
       <div>
-        
-          {selected.map((data, i) => <UserCard key={i} {...data}/>)}
-        
+        {selected.map((data, i) => (
+          <UserCard key={i} {...data} />
+        ))}
       </div>
     </>
   );
