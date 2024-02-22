@@ -78,7 +78,7 @@ export default function page() {
       <InputDate
         label={"구매 일자"}
         setDate={setExpirationDate}
-        dateTime={new Date("2024-02-28")}
+        // dateTime={new Date("2024-02-28")}
         calcDate={3}
       />
       {select !== "" && (

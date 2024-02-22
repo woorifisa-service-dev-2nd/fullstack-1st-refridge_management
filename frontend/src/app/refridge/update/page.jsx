@@ -1,6 +1,8 @@
 "use client";
+
 import { findAllItems, useRefridge } from "@/api/refridge";
 import InputCustom from "@/components/InputCustom";
+
 import InputSelect from "@/components/InputSelect";
 import UserCard from "@/components/UserCard";
 import React, { useEffect, useRef, useState } from "react";
@@ -12,8 +14,10 @@ export default function page() {
   const [quantity, setQuantity] = useState(0);
   const inputRef = useRef();
   useEffect(() => {
+
     // inputRef.current.focus();
     findAllItems().then((res) => setItems(res));
+
   }, []);
 
   const onUpdate = () => {

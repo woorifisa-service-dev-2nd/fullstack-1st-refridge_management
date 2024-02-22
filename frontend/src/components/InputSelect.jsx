@@ -7,9 +7,6 @@ export default function InputSelect({
   placeholder,
   selectValue,
 }) {
-  //   useEffect(() => {
-  //     items.map((v, i) => console.log(i, v));
-  //   }, []);
   return (
     <>
       <div className="relative h-10 w-72 min-w-[200px]">
